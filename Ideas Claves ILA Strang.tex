@@ -1,0 +1,532 @@
+\documentclass[]{article}
+
+%opening
+
+\title{Introduci\'on al \'Algebra Lineal (Strang): Revisi\'on de Ideas Claves}
+
+\author{Ciencias de la Computaci\'on V}
+
+\usepackage[hidelinks]{hyperref}
+\usepackage{cancel}
+\usepackage{pst-node}
+\usepackage{textcomp}
+\usepackage{amssymb}
+\usepackage{wasysym}
+\usepackage{multirow} 
+\usepackage[T1]{fontenc}
+
+\usepackage[spanish]{babel}
+\usepackage{graphicx}
+\usepackage{epstopdf}
+\usepackage{float}
+\usepackage{mathrsfs}
+\epstopdfsetup{outdir=./} 
+\selectlanguage{spanish}
+\usepackage[utf8]{inputenc}
+
+
+\newtheorem{def1}{Definición}
+\newtheorem{definicion}[def1]{Definición}
+
+                          
+
+\begin{document}
+	
+\maketitle
+
+\section{Capitulo 1 Introducci\'on a vectores}
+
+\subsection{Vectores y convinaciones lienales}
+
+\begin{itemize}
+	
+	\item Un vector $ v $ en el espacio de dos dimensiones tiene dos componentes $ v_{1} $ y $ v_{2} $.  
+	
+	\item $ v+w=(v_{1}+w_{1},\ v_{2}+w_{2}) $ y $ cv=(cv_{1}, cv_{2}) $  se halla un componente por vez. 
+	
+	\item La convinación lineal de tres vectores $ u $, $ v $ y $ w $ es $ cu+cv+cw $.
+	
+	\item Se toma todas las combinaciones lineales de $ u $ o $ u $ y $ v $ o $ u,\ v,\ w $. En tres dimensiones estas combinaciones suelen ocupar una linea, luego un plano y todo el espacio $ \mathbb{R}^{3} $.  
+	
+\end{itemize}
+
+\subsection{Longitud y producto punto}
+
+\begin{itemize}
+	
+	\item El producto punto $ v\cdot w $ multiplica cada componente $ v_{i} $ por $ w_{i} $ y adiciona todo $ v_{i}w_{i} $. 
+	
+	\item La longitud $ \| v \| $ de un vector es la ra\'iz cuadrada de $ v\cdot v $. 
+	
+	\item $ u=v/ \| v \| $ es un vector unitario. Su longitud es 1. 
+	
+	\item El producto punto es $ v\cdot w = 0 $ cuando el vector $ v $ y $ w $ son perpendiculares. 
+	
+	\item El coseno de $ \Theta $ (el angulo entre cualquier $ v $ y $ w $ distinto de cero) nunca excede 1: 
+	\[
+	cos \Theta = \frac{v\cdot w}{\| v\| \|w \|} 
+	\] 
+	\textbf{Desigualdad de Schwarz}
+	\[
+	|v\cdot w|\leq \| v\| \|w \|
+	\]
+	El problema 21 produce la desigualdad del triangulo  $ \| v + w \| \leq \| v\| + \|w \| $
+	
+\end{itemize}
+
+\subsection{Matrices}
+
+\begin{itemize}
+	
+	\item \textbf{Matrix times vector}: $ Ax = $ combinaci\'on de las columnas de $ A $.  
+	
+	\item La soluci\'on a $ Ax=b $ es $ x=A^{-1}b $, cuando $ A $ es una matriz invertible. 
+	
+	\item La matriz de diferencia $ A $ se invierte por la matriz suma $ S0A^{-1} $. 
+	
+	\item Las matrices c\'iclicas son no invertibles. Sus tres columnas se encuentran en el mismo plano. Estas columnas dependientes se adhieren al vector cero. $ Cx=0 $ tiene muchas soluciones.  
+	
+\end{itemize}
+
+\section{Capitulo 2 Solución de ecuaciones lineales}
+
+\subsection{Vectores y ecuaciones lineales}
+
+\begin{itemize}
+	\item Las operaciones básicas sobre vectores son la multiplicación por escalar y la adición de vectores.
+	\item La utilización de la multiplicación por escalar y la suma conforman una combinación lineal. Ej: cv+dw.
+	\item La matriz de multiplicación Ax, puede ser computada utilizando productos puntos, una fila a la vez. Pero Ax debe ser entendido como una combinación de columnas de A.
+	\item AX=b, ``b'' es una combinación lineal de las columnas de la matriz de A.
+	\item Cada ecuación en Ax=b da una línea (n=2) o un plano (n=3) o un hiperplano cuando (n>3)
+\end{itemize}
+
+\subsection{La idea de la eliminaci\'on}
+
+\begin{itemize}
+	\item Un sistema Ax=b se transforma en un sistema triangular Ux=c, luego de la eliminación.
+	\item Se sustrae $l_{ij}=\frac{entrada-eliminar-en-fila-i}{pivot-en-fila-j}$
+	\item Un vector cero en una posición pivot puede ser reparado si hay un no cero abajo.
+	\item Un sistema triangular superior es resuelto por sustitución hacia atrás.
+	\item Cuando un corte es permanente, el sistema puede no tener solución o muchas soluciones.
+\end{itemize}
+
+\subsection{Eliminaci\'on usando matrices}
+
+\begin{itemize}
+	\item $Ax=x_{1}$ veces las columnas $1+\cdots+x_{n}$ veces la columna $n$. $\sum_{j=1}^n a_{ij}x_{j}$.
+	\item Multiplicando $Ax=b$ por $E_{21}$ sustrae un múltiplo $l_{21}$ de la ecuación 1 de la ecuación 2. El número $-l_{21}$ es la entrada $(2,1)$ de la matriz de eliminación $E_{21}$.
+	\item Para una matriz aumentada $[A b]$, el paso de eliminación da $[E_{21}A E_{21} b]$.
+	\item Cuando se multiplica A por cualquier matriz B esta multiplica cada columna de B por separado.
+\end{itemize}
+
+\subsection{Reglas para operaciones de metrices}
+
+\begin{itemize}
+	\item Las entradas (i,j) de AB es (fila de i de A) . (columna j de B).
+	\item Una matriz de m x n veces por una matriz n x p usa mnp multiplicaciones separadas.
+	\item AB es también la suma de estas matrices: (columna de j de A) veces (fila de j de B).
+	\item La multiplicación por bloque es permitida cuando las figuras coinciden correctamente.
+	\item La eliminación por bloque produce el complemento $D-CA^{-1}B$.
+\end{itemize}
+
+\subsection{Matriz inversa}
+
+\begin{itemize}
+	
+	\item La matriz inversa esta dada por $ AA^{-1} = I $ y   $ A^{-1}A = I $. 
+	
+	\item $ A $ es invertible si y solo si tiene $ n $ pivots (con intercambios de filas permitios). 
+	
+	\item Si $ Ax=0 $ para un vector $ x $ distinto de $ 0 $, entonces $ A $ no es invertible. 
+	
+	\item La inversa de $ AB $ es el producto de $ B^{-1}A^{-1} $. Y $ (ABC)^{-1}=C^{-1}B^{-1}A^{-1} $. 
+	
+	\item El m\'etodo Gauss-Jordan resuelve $ AA^{-1}=I $ para encontrar las $ n $ columnas de $ A^{-1} $. La matriz aumentada $ [AI] $ esta reducida a la fina $ [I A^{-1}] $.  
+	 
+	
+\end{itemize}
+
+\subsection{Factorizaci\'on A=LU}
+
+\begin{itemize}
+	\item La eliminación gaussiana(sin cambio de filas) factorea A en L veces U.
+	\item La matriz triangular inferior L contiene los números $l_{ij}$ que multiplica las filas pivots, desde A produciendo U. El producto LU agrega las filas para recuperar A.
+	\item En el lado derecho se resuelve $Lc=b$ (forward) y$Ux=c$ (backward).
+	\item \textbf{Factor:} Existe un $\frac{1}{3}(n^3-n)$ multiplicaciones y substracciones del lado izquierdo.
+	\item \textbf{Solución:}Existe un $n^2$ multiplicaciones y substracciones en el lado derecho.
+	Para una matriz banda, cambiar $\frac{1}{3}n^3$ a $nw^{2}$ y cambia $n^2$ a $2wn$.
+\end{itemize}
+
+\subsection{Transpuesta}
+
+La transpuesta coloca las filas de A en columnas de $A^{T}$. Entonces ($A^{T}_{ij}=A_{ji}$).
+Las transpuesta de AB es $B^{T}A^{T}$. La transpuesta de $A^{-1}$ es la inversa de $A^{T}$.
+El producto punto es $x \cdot y=x^{T}y$. Entonces $(Ax)^{T}y$ es igual al producto punto de $x^{T}(A^{T}y)$.
+Cuando una matriz es simétrica $(A^{T}=A)$, su factorización $LDU$ es simétrica: $A=L D L^{T}$.
+Una matriz de permutación P tiene uno en una fila y columna y $P^{T}=P^{-1}$.
+Existen $n!$ matrices de permutaciones del tamaño de $n$. Mitad par y mitad impar.
+Si A es invertible, entonces la permutación P reordenando sus filas es $PA=LU$.
+
+\section{Capitulo 3 Vectores y Subespacios}
+
+\textbf{Autor:} Luis Esteban Mart\'inez Lailla stban06@gmail.com, Facultad Polit\'ecnica - Universidad Nacional de Asunci\'on.
+
+\subsection{3.1 - Espacios de Vectores}
+\begin{definicion}
+	El espacio $R^n$ consiste en todos los vectores columnas con $n$ componentes.
+\end{definicion}
+
+$M \Rightarrow$ El espacio vector de todas las matrices 2x2.
+$F \Rightarrow$ El espacio vector de todas las funciones reales $(f(x))$.
+$Z \Rightarrow$ El espacio vector que consiste en solo el vector cero.
+
+\begin{definicion}
+	Un subespacio de un espacio vector es un grupo de vectores (incluyendo 0) que satisfaga 2 requerimientos:
+	\begin{enumerate}
+		\item $V + W $ est\'a en el subespacio.
+		\item $cV$ est\'a en el subespacio.
+	\end{enumerate}
+\end{definicion}
+Un subespacio que contiene V y W, debe contener todas las combinaciones lineales $cV+dW$.
+
+\begin{definicion}
+	El espacio columna consiste en todas las combinaciones lineales de las columnas. Las combinaciones son todos los posibles vectores $Ax$. Estos llenan el espacio columna $C(A)$
+\end{definicion}
+``Ax=b tiene soluci\'on si y solo si b est\'a en el espacio columna de A.''
+
+\subsection{El espacio nulo de A: Resolviendo Ax=0}
+\begin{enumerate}
+	\item El espacio nulo de A ``N(A)'' contiene todas las soluciones tales que Ax=0.
+	\item La eliminaci\'on produce una matriz echelon U, y entonces una fila reducida R, con columnas pivots y columnas libres.
+	\item Cada columna libre de U o R lleva a una soluci\'on especial. La variable libre se iguala a 1 y las otras variables libres a 0. La sustituci\'on por atr\'as resuelve Ax=0.
+	\item La soluci\'on completa a Ax=0 es una combinaci\'on de las soluciones especiales.
+	\item Si $n>m$ entonces A tiene al menos una columna sin pivot, dando una soluci\'on especial. Por lo que hay vectores x diferentes de cero en el espacio nulo de esta matriz A rectangular.
+\end{enumerate}
+
+\subsection{El rango y la forma reducida de fila}
+\begin{enumerate}
+	\item El rango (r) de A es el n\'umero de pivots despu\'es de la eliminaci\'on.
+	\item El rango es la dimensi\'on del espacio columna. $r=dim(C(A))$
+	\item Las columnas pivots no son combinaciones de otras columnas.
+	\item Las columnas libres son combinaciones de otras columnas. Estas combinaciones son las soluciones especiales.
+	\item Ax=0 tiene r pivots y n-r variables libres.
+	\item La matriz del espacio nulo N contiene las n-r soluciones especiales. Entonces AN=0.
+\end{enumerate}
+
+\subsection{La soluci\'on completa de Ax=b}
+X particular soluciona $Ax_p=b$.
+
+X null soluciona $Ax_n=0$
+
+La soluci\'on completa X= $x_p + x_n$.
+
+\subsubsection{Full column rank (r=n)}
+\begin{itemize}
+	\item Todas las columnas de A son columnas pivot.
+	\item No hay variables libres o soluciones especiales.
+	\item El espacio nulo N(A) contiene solo el vector cero.
+	\item Si Ax=b tiene soluci\'on (puede no tener) entonces es \'unica.
+\end{itemize}
+
+\subsubsection{Full row rank (r=m)}
+\begin{itemize}
+	\item Todas las filas tienen pivots, y R no tiene fila de cero.
+	\item Ax=b tiene una soluci\'on por cada lado derecho b.
+	\item El espacio columna es todo el espacio $R^m$.
+	\item Existen n-r=n-m soluciones especiales en el espacio nulo de A.
+\end{itemize}
+
+\subsection{Independencia, bases y dimensi\'on}
+Cada vector en el espacio es una combinaci\'on \'unica de los vectores bases.
+\begin{definicion}
+	Las columnas de A son linealmente independientes cuando la \'unica soluci\'on a Ax=0 es x=0. Ninguna otra combinaci\'on Ax de las columnas dan el vector cero.
+\end{definicion}
+\begin{definicion}
+	La secuencia de vectores $V_1, V_2, \ldots , V_n$ es linealmente independiente si la \'unica combinaci\'on que genera el vector cero es $0V_1+0V_2+\ldots+0V_n$.
+\end{definicion}
+\begin{definicion}
+	Un conjunto de vectores generan un espacio si las combinaciones lineales llenan el espacio.
+\end{definicion}
+
+\begin{definicion}
+	El espacio fila de una matriz es el subespacio de $R^n$ generado por las filas.
+	
+	El espacio fila de A es $C(A^T)$. Esto es el espacio columna de $A^T$.
+\end{definicion}
+
+\begin{itemize}
+	\item Los vectores bases son L.I y ellos generan el espacio.
+	\item Los vectores $V_1,\ldots,V_n$ son bases para $R^n$ exactamente cuando ellos son las columnas de una matriz invertible nxn. Entonces $R^n$ tiene infinitas y diferentes bases.
+	\item Las columnas pivots son una base para su espacio columna. Las filas pivots de A son una base para su espacio fila.
+\end{itemize}
+\begin{definicion}
+	La dimensi\'on de un espacio es el n\'umero de vectores de la base.
+\end{definicion}
+
+\subsection{3.6 - Dimensiones de los cuatro subespacios}
+\begin{enumerate}
+	\item El espacio fila es $C(A^T)$, un subespacio de $R^n$.
+	\item El espacio columna es $C(A)$, un subespacio de $R^m$.
+	\item El espacio nulo es $N(A)$, un subespacio de $R^n$.
+	\item El espacio nulo izquierdo es $N(A^T)$, un subespacio de $R^m$.
+\end{enumerate}
+Obs. Ver el big picture.
+
+\subsubsection{Teorema fundamental del Algebra Lineal, Parte I}
+$C(A)$ y $C(A^T)$ tienen la misma dimensi\'on r.
+
+$N(A)$ y $N(A^T)$ tienen dimensiones n-r y m-r.
+
+\section{Capitulo 4 Ortogonalidad}
+
+\subsection{La ortogonalidad de los cuatro subespacios}
+\begin{itemize}
+	\item Subespacios V y W son ortogonales si cada v en V es ortogonal a cada w en W.
+	\item V y W son complementos ortogonales si W contiene todos los vectores perpendiculares a V (y viceversa). Dentro $R^{n}$, las dimensiones de complementos V y W se suman a n.
+	\item El espacio nulo N (A) y el espacio de la fila C ($A^{T}$) son complementos ortogonales, de Ax = 0. Del mismo modo N ($A^{T}$) y C (A) son complementos ortogonales.
+	\item n vectores independientes en $R^{n}$ abarcarán (span) $R^{n}$.
+	\item Cada x en $R^{n}$ tiene un componente $x_{n}$ en el espacio nulo y un componente $x_{r}$ en el  espacio fila.
+\end{itemize}
+
+\subsection{Proyecciones}
+\begin{itemize}
+	\item La proyección de b sobre a es $p=a\widehat{x}=a(a^{T}b/a^{T}a)$
+	\item El rango de una matriz de proyección $P=aa^{T}/a^{T}a$ multiplica b para producir p.
+	\item b proyectar sobre un subespacio deja e=b-p perpendicular al subespacio.
+	\item Cuando A es de rango completo n, la ecuación $A^{T}A\widehat{x} = A^{T}b$ conduce a $\widehat{x}$ y $p = A\widehat{x}$
+	\item La matriz de proyección $P=A(A^{T}A)^{-1}A^{T}$ tiene $P^{T}=P$ y $P^{2}=P$.
+\end{itemize}
+\subsection{Aproximaciones por mínimos cuadrados}
+\begin{itemize}
+	\item La solución por mínimos cuadrados $\widehat{x}$ ocurre cuando se minimiza $E=\left \| Ax-b \right \|^{2}$. Esta es la suma de los cuadrados de los errores en las m ecuaciones $(m > n)$.
+	\item La mejor $\widehat{x}$ proviene de las ecuaciones normales $A^{T}A\widehat{x}=A^{T}b$.
+	\item Para encajar m puntos por una línea b = C + Dt, las ecuaciones normales estan dadas por C y D.
+	\item Las alturas de la mejor línea son $p=(p_{1},\ldots,p_{m})$. Las distancias verticales a los puntos de datos son los errores $e=(e_{1},\ldots,e_{m})$.
+	\item Si tratamos de encajar m puntos por la combinación de $n<m$ funciones, las m ecuaciones Ax = b son generalmente insolubles. Las n ecuaciones $A^{T}A\widehat{x}=A^{T}b$ dan la solución de mínimos cuadrados.
+\end{itemize}
+
+\subsection{Base ortogonal y Gram-Schmidt}
+\begin{itemize}
+	\item Si los vectores ortonormales $q_{1},\ldots,q_{n}$ son las columnas de Q, entonces $q_{i}^{T}q_{j}=0$ y $q_{i}^{T}q_{i}=1$ se traducen en $Q^{T}Q=I$.
+	\item Si $Q$ es cuadrada (una matriz ortogonal), entonces $Q^{T}=Q^{-1}$: transpuesta = inversa.
+	\item La longitud de $Qx$ es igual a la longitud de $x$: $\left \| Qx \right \|=\left \| x \right \|$.
+	\item La solución de mínimos cuadrados de $Qx=b$ es $\widehat{x} = Q^T b$. La proyección sobre el espacio columna que es abarcado por las $q$ es $P = QQ^{T}$.
+	\item $Q$ también preserva los productos punto: $(Qx)^T (Qy) = x^T Q^T QY = x^T y$.
+	\item Si $Q$ es cuadrada entonces $P = I$ y todos los $b=q_{1}(q_{1}^{T}b)+\ldots+q_{n}(q_{n}^{T}b)$.
+	\item Gram-Schmidt produce vectores ortonormales $q_{1},q_{2},q_{3}$Q1, Q2, Q3 de ser independiente $a, b, c$. La factorización de la matriz es $A = QR=$(Q ortogonal) (R triangular).
+
+	\item \textbf{El proceso de Gram-Schmidt:} Primero se elige $A=a$. La siguiente dirección $B$ debe ser perpendicular a $A$. \textbf{Se inicia con b y se substrae la proyección sobre $A$}. Ésto es:
+
+	$B = b - \frac{A^T b}{A^T A}A$.
+
+	$A$ es ortogonal a $B$. Siguiente paso:
+
+	$C = c - \frac{A^T c}{A^T A}A - \frac{B^T c}{B^T B}B$.
+
+	Finalmente, {\it dividir los vectores ortogonales $A,B,C...$ por sus longitudes.} Los vectores resultantes $q_1,q_2,...$ son ortonormales.
+
+
+\end{itemize}
+
+\section{Capitulo 5 Determinante}
+
+\subsection{Propiedades de las determinates}
+
+\begin{itemize}
+	
+	\item El determinante se define por $ det\ I=1 $, inversi\'on de signo y la linealidad en cada fila. 
+	
+	\item Despu\'es de de la eliminaci\'on det$ A $ es $ \pm $ (producto de los pivots).
+	
+	\item La determinante es exactamente cero cuando $ A $ es no invertible. 
+	
+	\item Dos propiedades notables son $ det\ AB=(det\ A)(det\ B) $ y $ det\ A^{T}=det\ A $. 
+	
+\end{itemize}
+
+\subsection{Permutaciones y cofactores}
+
+\begin{itemize}
+	
+	\item Sin intercambio de filas $ det\ A = (producto\ de\ pivots) $. En la esquina superior izquierda $ det\ A_{k} =$\textit{(producto de los primeros $ k $ pivots). }
+	
+	\item Cada t\'ermino en la gran f\'ormula (8) utiliza cada fila y columna de una vez. La mitad de los n! t\'erminos tienen signos + (cuando $ det\ P = +1 $) y la otra mitad tiene signo menos.
+	
+	\item El cofactor $ c_{ij} $ es $ (-1)^{i+j} $ veces la determinante m\'as pequeña que omite la fila $ i $ y columna $ j $ (debido al uso de la columna y fila $ a_{ij} $). 
+	
+	\item La determinante es el producto punto de cualquier fila de $ A $ con las filas del cofactor. Cuando la fila de $ A $ tiene muchos ceros, solo necesitamos unos pocos cofactores. 
+	
+	\end{itemize}
+	
+\subsection{Regla de Cramer, inversos y volumenes}
+
+\begin{itemize}
+	
+	\item La regla de Cramer resuelve $ Ax=b $ por relaciones del tipo $ x_{1}=|B_{1}|/|A|=|ba_{1}...a_{n}|/|A| $.
+	
+	\item Cuando C es la matriz cofactor para $ A $, la inversa es $ A^{-1}=C^{T}/det\ A $.
+	
+	\item El volumen de una caja es $ |det\ A| $, cuando los bordes de la caja son la fila de $ A $.
+	
+	\item \'Area y volumen son necesarios para cambiar las variables en integrales dobles y triples.
+	
+	\item En $ \mathbb{R}^{3} $, el producto cruz $ u \times v $ es perpendicular a $ u $ y $ v $. 
+	
+\end{itemize}
+
+\section{Capitulo 6 Valorespropios y vectorespropios}
+
+\subsection{Introducci\'on a valorespropios}
+
+\begin{itemize}
+	\item $ Ax=\lambda x $ dice que el vectorpropio $ x $ mantiene la misma direcci\'on cuando se multiplica por $ A $. 
+	
+	\item $ Ax=\lambda x $ tambi\'en dice que $ det(A-\lambda I)=0 $. Esto determina $ n $ valores propios. 
+	
+	\item Los valores propios de $ A^{2} y A^{-1} $ son $ \lambda^{2} $ y $ \lambda^{-1} $, con igual vectorpropio. 
+	
+	\item La suma de $ \lambda's $ es igual a la suma de la diagonal principal de $ A $ (\textit{The trace}). El producto de $ \lambda's $ es igual a la determinante. 
+	
+	\item Matriz de proyecci\'on $ P $, motriz de reflexi\'on $ R $, matriz de rotaci\'on 90° $ Q $ tiene valorespropios especiales $ 1,\ 0,\ -1,\ i,\ -i $. Una matriz singular tiene $ \lambda=0 $. Una matriz triangular tiene $ \lambda's $ en su diagonal. 
+	
+\end{itemize}
+
+\subsection{Diagonalizar una matriz}
+
+\begin{itemize}
+	\item Si $ A $ tiene $ n $ vectorespropios independiente $ x_{1},...,\ x_{n} $, estos entran en el espacio columna de $ S $.\\
+	\[
+	S^{-1}AS=\Lambda 
+	\] 
+	\[
+	A=S\Lambda S^{-1}
+	\] 
+	
+	\item Las potencias de $ A $ son $ A^{k}=S \Lambda^{k}S^{-1} $. Los vectores propios de $ S $ no se han modificado. 
+	
+	\item Los valores propios de $ A^{k} $ son $ (\lambda_{1})^{k},...,(\lambda_{n})^{k} $ en la matriz $ \Lambda^{k} $.
+	
+	\item La soluci\'on a $ u_{k+1}=Au_{k} $ empezando desde $ u_{0} $ es $ U_{k}=A^{k}u_{0}=S\Lambda S^{-1}u_{0} $: 
+	\[
+	u_{k}=c_{1}(\lambda)^{k}x_{1}+\cdots+c_{n}(\lambda)^{k}x_{n}
+	\]
+	siempre que 
+	\[
+	u_{0}=c_{1}x_{1}+\cdots+c_{n}x_{n}
+	\]
+	Esto muestran los pasos 1, 2, 3 ($ c's $ desde $ S^{-1}u_{0} $, $ \lambda^{k} $ desde $ \Lambda^{k} $ y $ x's $ desde $ S $).
+	
+	\item $ A $ es diagonalizable si cada valorpropio tiene suficientes vectorespropios (GM=AM). 
+	
+\end{itemize}
+
+\subsection{Aplicaci\'on a ecuaciones diferenciales}
+
+\begin{itemize}
+	
+	\item La ecuaci\'on $ u'=Au $ es lineal con coeficientes constantes, empezando desde $ u(0) $. 
+	
+	\item Su soluci\'on es por lo general una combinaci\'on de exponenciales, implicando cada $ \lambda $ y $ x $: 
+	
+	\textbf{Vectorespropios independientes}
+	\[
+	u(t)=c_{1}e^{\lambda_{1}t}x_{1}+\cdots+c_{n}e^{\lambda_{n}t}x_{n}
+	\]
+	
+	\item Las constantes $ c_{1},...,c_{n} $ son determinadas por $ u(0)=c_{1}x_{1}+\cdots+c_{n}x_{n}=Sc $.
+	
+	\item $ u(t) $ se aproxima a cero (estabilidad) si cada $ \lambda $ tiene parte real negativa. 
+	
+	\item La soluci\'on es siempre $ u(t)=e^{At}u(0) $, con la matriz exponencial $ e^{At} $. 
+	
+	\item Ecuaciones con $ y'' $ se reducen a $ u'=Au $ por combinaci\'on de $ y' $ e $ y $ en $ u=(y,y') $.  
+	
+\end{itemize}
+
+\subsection{Matrices simetricas}
+
+\begin{itemize}
+
+	\item La matriz sim\'etrica $ A $ tiene \textit{valorespropios real} y \textit{vectorespropios perpendiculares}.
+	
+	\item La diagonalizaci\'on se convierte a $ A=Q\Lambda Q^{T} $ con una matriz ortogonal $ Q $. 
+	
+	\item Todas las matrices sim\'etricas son diagonalizables, incluso con valores propios repetidos. 
+	
+	\item El signo del valorpropio coincide con el signo del pivots, cuando $ A=A^{T} $.  
+	
+	\item Toda matriz cuadrada puede ser ``triagonalizada" por $ A=QTQ^{-1} $. 
+	
+\end{itemize}
+
+\subsection{Matriz defiida positiva}
+
+\begin{itemize}
+	
+	\item Una matriz definida positiva tiene valoresprepios positivos y pivots positivos.
+	
+	\item Un test r\'apido esta dado por la determinante de la parte superior izquierda: $ a > 0 $ y  $ ac-b^{2} > 0 $. 
+	
+	\item La gr\'afica de $ x^{T}Ax $ es entonces un ``bowl" subiendo desde $ x=\textbf{0} $: 
+	\[
+	x^{T}Ax=ax^{2}+2bxy+cy^{2}
+	\]
+	es positivo excepto en $ (x,y)=(0,0) $.
+	
+	\item $ A=R^{T}R $ es autom\'aticamente positiva definida si $ R $ tiene columnas independientes. 
+	
+	\item La elipse $ x^{T}Ax=1 $ tiene sus ejes a lo largo de los vectores propios de $ A $. Con longitudes $ 1/\sqrt{\lambda} $.
+	
+\end{itemize}
+
+\subsection{Matrices similares}
+
+\begin{itemize}
+	
+	\item $ B $ es similar a $ A $ si $ B=M^{-1}AM $, para alguna matriz invertible $ M $. 
+	
+	\item Matrices similares tienen iguales valorespropios. Los vectorespropios se multiplican por $ M^{-1} $.
+	
+	\item Si $ A $ tiene $ n $ vectorespropios independiente entonces $ A $ es similar a $ \Lambda $ ($ M=S $). 
+	
+	\item Cada matriz es similar a una matriz de Jordan $ J $ (que tiene $ A $ como su parte diagonal). $ J $ tiene un bloque para cada vectorpropio y 1's para los vectorespropios faltantes. 
+	
+\end{itemize}
+
+\subsection{Descomposici\'on en valor singular (SVD)}
+
+\begin{itemize}
+	
+	\item El factor SVD de $ A $ en $ V\Sigma V^{T} $ de $ r $ valores singulares $ \sigma_{1}\geq ... \geq \sigma_{r} > 0 $.
+	
+	\item Los n\'umeros $ \sigma^{2}_{1},..., \sigma^{2}_{r} $ son los vectorespropios distintos de cero de $ AA^{T} $ y $ A^{T}A $.
+	
+	\item La columna ortonormal de $ U $ y $ V $ son vectorespropios de $ AA^{T} $ y $ A^{T}A $. 
+	
+	\item Esas columnas tiene  bases ortonormales para los cuatro espacios fundamentales de $ A $. 
+	
+	\item Esas bases diagonalizan la matriz: $ Av_{i}=\sigma_{1}u_{i} $ para $ i \leq r $. Esto es $ AV=U\Sigma $. 
+	
+	
+\end{itemize}
+
+Este material fue elaborado por:\\
+ 
+	Esteban Lailla stban06@gmail.com\\
+	Juan Carlos Miranda juancarlosmiranda81@gmail.com\\
+	Julio Mello prof.juliomello@gmail.com\\
+	Pastor Enmanuel P\'erez-Estigarribia peperez.estigarribia@gmail.com \\
+	Luis G. Moré lmore@pol.una.py
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\renewcommand{\refname}{Bibliograf\'ia consultada}
+\begin{thebibliography}{99}
+	
+	\bibitem{DU} GILBERT STRANG.
+	\emph{INTRODUCTION TO LINEAR ALGEBRA (Fourth Edition)},
+	ISBN 978-0-9802327-2-1
+	
+	
+\end{thebibliography}
+
+\end{document}
